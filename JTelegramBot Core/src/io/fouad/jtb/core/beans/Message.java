@@ -172,6 +172,9 @@ public class Message
 	@JsonProperty("new_chat_member")
 	private User newChatMember;
 	
+	@JsonProperty("new_chat_participant")
+	private User newChatParticipant;
+
 	/**
 	 * Optional. A member was removed from the group, information about them
 	 * (this member may be the bot itself).
@@ -256,7 +259,7 @@ public class Message
 	public Message(int messageId, User from, int date, Chat chat, User forwardFrom, Chat forwardFromChat,
 	               Integer forwardDate, Message replyToMessage, int editDate, String text, MessageEntity[] entities,
 	               Audio audio, Document document, PhotoSize[] photo, Sticker sticker, Video video, Voice voice,
-	               String caption, Contact contact, Location location, Venue venue, User newChatMember,
+	               String caption, Contact contact, Location location, Venue venue, User newChatMember, User newChatParticipant,
 	               User leftChatMember, String newChatTitle, PhotoSize[] newChatPhoto, Boolean deleteChatPhoto,
 	               Boolean groupChatCreated, Boolean superGroupChatCreated, Boolean channelChatCreated,
 	               Long migrateToChatId, Long migrateFromChatId, Message pinnedMessage)
@@ -283,6 +286,7 @@ public class Message
 		this.location = location;
 		this.venue = venue;
 		this.newChatMember = newChatMember;
+		this.newChatParticipant = newChatParticipant;
 		this.leftChatMember = leftChatMember;
 		this.newChatTitle = newChatTitle;
 		this.newChatPhoto = newChatPhoto;
@@ -317,6 +321,7 @@ public class Message
 	public Location getLocation(){return location;}
 	public Venue getVenue(){return venue;}
 	public User getNewChatMember(){return newChatMember;}
+	public User getNewChatParticipant(){return newChatParticipant;}
 	public User getLeftChatMember(){return leftChatMember;}
 	public String getNewChatTitle(){return newChatTitle;}
 	public PhotoSize[] getNewChatPhoto(){return newChatPhoto;}
@@ -360,6 +365,8 @@ public class Message
 		if(location != null ? !location.equals(message.location) : message.location != null) return false;
 		if(venue != null ? !venue.equals(message.venue) : message.venue != null) return false;
 		if(newChatMember != null ? !newChatMember.equals(message.newChatMember) : message.newChatMember != null)
+			return false;
+		if(newChatParticipant != null ? !newChatParticipant.equals(message.newChatParticipant) : message.newChatParticipant != null)
 			return false;
 		if(leftChatMember != null ? !leftChatMember.equals(message.leftChatMember) : message.leftChatMember != null)
 			return false;
@@ -407,6 +414,7 @@ public class Message
 		result = 31 * result + (location != null ? location.hashCode() : 0);
 		result = 31 * result + (venue != null ? venue.hashCode() : 0);
 		result = 31 * result + (newChatMember != null ? newChatMember.hashCode() : 0);
+		result = 31 * result + (newChatParticipant != null ? newChatParticipant.hashCode() : 0);
 		result = 31 * result + (leftChatMember != null ? leftChatMember.hashCode() : 0);
 		result = 31 * result + (newChatTitle != null ? newChatTitle.hashCode() : 0);
 		result = 31 * result + Arrays.deepHashCode(newChatPhoto);
@@ -429,7 +437,7 @@ public class Message
 				text + '\'' + ", entities=" + Arrays.deepToString(entities) + ", audio=" + audio + ", document=" +
 				document + ", photo=" + Arrays.deepToString(photo) + ", sticker=" + sticker + ", video=" + video +
 				", voice=" + voice + ", caption='" + caption + '\'' + ", contact=" + contact + ", location=" +
-				location + ", venue=" + venue + ", newChatMember=" + newChatMember + ", leftChatMember=" +
+				location + ", venue=" + venue + ", newChatMember=" + newChatMember +", newChatParticipant=" + newChatParticipant + ", leftChatMember=" +
 				leftChatMember + ", newChatTitle='" + newChatTitle + '\'' + ", newChatPhoto=" +
 				Arrays.deepToString(newChatPhoto) + ", deleteChatPhoto=" + deleteChatPhoto + ", groupChatCreated=" +
 				groupChatCreated + ", superGroupChatCreated=" + superGroupChatCreated + ", channelChatCreated=" +
