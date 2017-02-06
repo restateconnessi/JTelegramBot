@@ -70,10 +70,13 @@ public class Chat
 	 */
 	@JsonProperty("last_name")
 	private String lastName;
-	
+
+	@JsonProperty("all_members_are_administrators")
+	private boolean allMembersAreAdministrators;
+
 	public Chat(){}
 	
-	public Chat(long id, ChatType type, String title, String username, String firstName, String lastName)
+	public Chat(long id, ChatType type, String title, String username, String firstName, String lastName, boolean allMembersAreAdministrators)
 	{
 		this.id = id;
 		this.type = type;
@@ -81,8 +84,11 @@ public class Chat
 		this.username = username;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.allMembersAreAdministrators = allMembersAreAdministrators;
 	}
-	
+
+
+	public boolean isAllMembersAreAdministrators() {return allMembersAreAdministrators;}
 	public long getId(){return id;}
 	public ChatType getType(){return type;}
 	public String getTitle(){return title;}
@@ -129,6 +135,7 @@ public class Chat
 				", username='" + username + '\'' +
 				", firstName='" + firstName + '\'' +
 				", lastName='" + lastName + '\'' +
+				", all_members_are_administrators='" + allMembersAreAdministrators + '\'' +
 				'}';
 	}
 }

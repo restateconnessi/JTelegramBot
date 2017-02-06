@@ -33,6 +33,13 @@ import java.util.Arrays;
  */
 public class Message
 {
+
+	@JsonProperty("new_chat_participant")
+	private User newChatParticipant;
+
+	@JsonProperty("left_chat_participant")
+	private User leftChatParticipant;
+
 	/**
 	 * Unique message identifier.
 	 */
@@ -252,15 +259,20 @@ public class Message
 	private Message pinnedMessage;
 	
 	public Message(){}
-	
+
+
+
 	public Message(int messageId, User from, int date, Chat chat, User forwardFrom, Chat forwardFromChat,
-	               Integer forwardDate, Message replyToMessage, int editDate, String text, MessageEntity[] entities,
-	               Audio audio, Document document, PhotoSize[] photo, Sticker sticker, Video video, Voice voice,
-	               String caption, Contact contact, Location location, Venue venue, User newChatMember,
-	               User leftChatMember, String newChatTitle, PhotoSize[] newChatPhoto, Boolean deleteChatPhoto,
-	               Boolean groupChatCreated, Boolean superGroupChatCreated, Boolean channelChatCreated,
-	               Long migrateToChatId, Long migrateFromChatId, Message pinnedMessage)
+				   Integer forwardDate, Message replyToMessage, int editDate, String text, MessageEntity[] entities,
+				   Audio audio, Document document, PhotoSize[] photo, Sticker sticker, Video video, Voice voice,
+				   String caption, Contact contact, Location location, Venue venue, User newChatMember,
+				   User leftChatMember, String newChatTitle, PhotoSize[] newChatPhoto, Boolean deleteChatPhoto,
+				   Boolean groupChatCreated, Boolean superGroupChatCreated, Boolean channelChatCreated,
+				   Long migrateToChatId, Long migrateFromChatId, Message pinnedMessage, User newChatParticipant, User leftChatParticipant)
 	{
+		this.newChatParticipant = newChatParticipant;
+		this.leftChatParticipant = leftChatParticipant;
+
 		this.messageId = messageId;
 		this.from = from;
 		this.date = date;
@@ -294,7 +306,15 @@ public class Message
 		this.migrateFromChatId = migrateFromChatId;
 		this.pinnedMessage = pinnedMessage;
 	}
-	
+
+
+	public User getNewChatParticipant() {
+		return newChatParticipant;
+	}
+
+	public User getLeftChatParticipant() {
+		return leftChatParticipant;
+	}
 	public int getMessageId(){return messageId;}
 	public User getFrom(){return from;}
 	public int getDate(){return date;}
